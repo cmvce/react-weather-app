@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 import Info from "./Info";
@@ -9,11 +9,13 @@ export default function Weather(props) {
   function getResponse(response) {
     setWeather({
       ready: true,
-      temperature: {
-        current: response.data.temperature.current,
-        humidity: response.data.temperature.humidity,
-      },
+      temperature: response.data.temperature.current,
+      humidity: response.data.temperature.humidity,
+      wind: response.data.wind.speed,
       city: response.data.city,
+      description: response.data.condition.description,
+      icon: response.data.condition.icon,
+      date: new Date(response.data.time * 1000),
     });
   }
 
@@ -50,7 +52,7 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-        <Info />
+        <Info data={weather} />
       </div>
     );
   } else {

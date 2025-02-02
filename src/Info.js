@@ -1,12 +1,12 @@
 import React from "react";
-
+import Date from "./Date";
 export default function Info(props) {
   return (
     <div className='Info'>
-      <h1>{props.city}</h1>
+      <h1>{props.data.city}</h1>
       <ul>
-        <li>sunday 09h00</li>
-        <li>sunny</li>
+        <Date />
+        <li>{props.data.description}</li>
       </ul>
       <div className='row'>
         <div className='col-6'>
@@ -14,13 +14,15 @@ export default function Info(props) {
             <div>
               <img src='http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png' />
             </div>
-            <div className='temperature'>{props.temperature}°C</div>
+            <div className='temperature'>
+              {Math.round(props.data.temperature)}°C
+            </div>
           </div>
         </div>
         <div className='col-6'>
           <ul>
-            <li>Humidity:{props.humidity}</li>
-            <li>Wind:</li>
+            <li>Humidity: {props.data.humidity}%</li>
+            <li>Wind: {props.data.wind} km/h </li>
           </ul>
         </div>
       </div>
